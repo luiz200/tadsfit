@@ -5,7 +5,14 @@ public class Equipamentos {
     private int patrimonio;
     private String nome;
     private String status;
-
+    
+    public void estadoEquipamento() {
+    	System.out.println("------------------------------------------");
+    	System.out.println("Patrimonio: "+this.getPatrimonio());
+    	System.out.println("Máquina: "+this.getNome());
+    	System.out.println("Status: "+this.getStatus());
+    	System.out.println("------------------------------------------");
+    };
     public Equipamentos(){
 
     }
