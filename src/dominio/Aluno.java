@@ -14,6 +14,18 @@ public class Aluno {
     public Aluno(){
 
     }
+    public void estado() {
+    	System.out.println("------------------------------------------");
+		System.out.println("Nome: "+this.getNome());
+		System.out.println("Matricula: "+this.getMatricula());
+		System.out.println("Idade: "+this.getIdade());
+		System.out.println("Altura: "+this.getAltura()+"cm");
+		System.out.println("Peso: "+this.getPeso()+"Kg");
+		System.out.println("Sexo:"+this.getSexo());
+		System.out.println("Contato: "+this.getContato());
+		System.out.println("Endereço: "+this.getEndereco());
+		System.out.println("------------------------------------------");
+    }
 
     public Aluno(int matricula, String nome, int idade, float altura, float peso, String sexo, String contato, String endereco){
 
