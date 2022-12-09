@@ -6,6 +6,15 @@ public class Filial {
     private String endereco;
     private String contato;
     private String horario;
+    
+    public void estadoFilial() {
+    	System.out.println("------------------------------------------");
+    	System.out.println("Filial: "+this.getId());
+    	System.out.println("Endereço: "+this.getEndereco());
+    	System.out.println("Contato: "+this.getContato());
+    	System.out.println("Horário de Funcionamento: "+this.getHorario());
+    	System.out.println("------------------------------------------");
+    };
 
     public Filial(){
 
