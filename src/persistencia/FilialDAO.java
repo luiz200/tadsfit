@@ -12,7 +12,7 @@ public class FilialDAO {
     private String Inserir = "insert into filial (id, endereco, contato, horario) values(?, ?, ?, ?)";
 
     public FilialDAO(){
-        c = new Conexao("jdbc:postgresql://localhost:5432/tadsfit","postgres", "1234");
+        c = new Conexao("jdbc:postgresql://localhost:5432/tadsfit","postgres", "12345");
     }
 
     public Filial buscar(int idAux){

@@ -12,7 +12,7 @@ public class AlunoDAO {
     private String Inserir = "insert into aluno (matricula, nome, idade, altura, peso, sexo, contato, endereco) values(?, ?, ?, ?, ?, ?, ?, ?)";
 
     public AlunoDAO(){
-        c = new Conexao("jdbc:postgresql://localhost:5432/tadsfit","postgres", "1234");
+        c = new Conexao("jdbc:postgresql://localhost:5432/tadsfit","postgres", "12345");
     }
 
     public Aluno buscar(int matriculaAux){

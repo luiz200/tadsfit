@@ -12,7 +12,7 @@ public class EquipamentosDAO {
     private String Inserir = "insert into equipamentos (patrimonio, nome, status) values(?, ?, ?)";
 
     public EquipamentosDAO(){
-        c = new Conexao("jdbc:postgresql://localhost:5432/tadsfit","postgres", "1234");
+        c = new Conexao("jdbc:postgresql://localhost:5432/tadsfit","postgres", "12345");
     }
 
     public Equipamentos buscar(int equipamentosAux){

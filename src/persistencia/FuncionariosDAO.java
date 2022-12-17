@@ -12,7 +12,7 @@ public class FuncionariosDAO {
     private String Inserir = "insert into funcionarios(matricula, nome, idade, sexo, contato, endereco, horario) valeus(?, ?, ?, ?, ?, ?, ?)";
 
     public FuncionariosDAO(){
-        c = new Conexao("jdbc:postgresql://localhost:5432/tadsfit","postgres", "1234");
+        c = new Conexao("jdbc:postgresql://localhost:5432/tadsfit","postgres", "12345");
     }
 
     public Funcionarios buscar(int matriculaAux){
