@@ -5,11 +5,15 @@ import dominio.Filial;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class FilialDAO {
     private Conexao c;
+    private String Relatorio = "select * from filial";
     private String Buscar = "select * from filial where id = ?";
     private String Inserir = "insert into filial (id, endereco, contato, horario) values(?, ?, ?, ?)";
+    private String Alterar = "update filial set id=?, endereco=?, contato=?, horario=?";
 
     public FilialDAO(){
         c = new Conexao("jdbc:postgresql://localhost:5432/tadsfit","postgres", "12345");
@@ -44,6 +48,37 @@ public class FilialDAO {
             c.desconectar();
         } catch (SQLException e) {
             System.out.println("Erro na inclusão");
+        }
+    }
+    public ArrayList<Filial> emitirRelatorio(){
+        Filial fila;
+        ArrayList<Filial> lista = new ArrayList<Filial>();
+        try {
+            c.conectar();
+            Statement instrucao = c.getConexao().createStatement();
+            ResultSet rs = instrucao.executeQuery(Relatorio);
+            while (rs.next()){
+                fila = new Filial(rs.getInt("id"), rs.getString("endereco"), rs.getString("contato"), rs.getString("horario"));
+                lista.add(fila);
+            }
+        }catch (Exception e){
+            System.out.println("Erro");
+        }
+        return lista;
+    }
+
+    public void alterar(Filial filia){
+        try {
+            c.conectar();
+            PreparedStatement instrucao = c.getConexao().prepareStatement(Alterar);
+            instrucao.setInt(1, filia.getId());
+            instrucao.setString(2, filia.getEndereco());
+            instrucao.setString(3, filia.getContato());
+            instrucao.setString(4, filia.getHorario());
+            instrucao.execute();
+            c.desconectar();
+        } catch (SQLException e) {
+            System.out.println("Erro na alteração");
         }
     }
 }
