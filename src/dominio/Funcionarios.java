@@ -3,6 +3,7 @@ package dominio;
 public class Funcionarios {
 
     private int matricula;
+    private int id_filial;
     private String nome;
     private int idade;
     private String sexo;
@@ -14,9 +15,10 @@ public class Funcionarios {
 
     }
 
-    public Funcionarios(int matricula, String nome, int idade, String sexo, String contato, String endereco, String horario){
+    public Funcionarios(int matricula, int id_filial, String nome, int idade, String sexo, String contato, String endereco, String horario){
 
         this.matricula = matricula;
+        this.id_filial = id_filial;
         this.nome = nome;
         this.idade = idade;
         this.sexo = sexo;
@@ -34,6 +36,13 @@ public class Funcionarios {
         this.matricula = matricula;
     }
 
+    public int getId_filial() {
+        return id_filial;
+    }
+
+    public void setId_filial(int id_filial) {
+        this.id_filial = id_filial;
+    }
     public String getNome() {
         return nome;
     }

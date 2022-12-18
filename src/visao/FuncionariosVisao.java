@@ -11,7 +11,7 @@ public class FuncionariosVisao {
         Scanner sc = new Scanner(System.in);
         FuncionariosDAO fun = new FuncionariosDAO();
         int op3 = 0, matriculaAux;
-        ArrayList<Funcionarios> lista = new ArrayList<Funcionarios>();
+        ArrayList<Funcionarios> lista;
         Funcionarios c;
         do {
             System.out.println("---------------------------------------------------------------------------");
@@ -38,6 +38,7 @@ public class FuncionariosVisao {
                     }else{
                         System.out.println("Profissional encontrado...");
                         System.out.println("Matrícula: "+c.getMatricula());
+                        System.out.println("Filial: "+c.getId_filial());
                         System.out.println("Nome: "+c.getNome());
                         System.out.println("Idade: "+c.getIdade());
                         System.out.println("Sexo: "+c.getSexo());
@@ -53,6 +54,8 @@ public class FuncionariosVisao {
                     if (c==null){
                         c = new Funcionarios();
                         c.setMatricula(matriculaAux);
+                        System.out.println("Digite a filial");
+                        c.setId_filial(sc.nextInt());
                         System.out.println("Digite o nome: ");
                         c.setNome(sc.nextLine());
                         System.out.println("Digite a idade: ");
@@ -80,6 +83,8 @@ public class FuncionariosVisao {
                     }else{
                         c = new Funcionarios();
                         c.setMatricula(matriculaAux);
+                        System.out.println("Digite a filial");
+                        c.setId_filial(sc.nextInt());
                         System.out.println("Digite o nome: ");
                         c.setNome(sc.nextLine());
                         System.out.println("Digite a idade: ");
@@ -100,7 +105,7 @@ public class FuncionariosVisao {
                     System.out.println("Listando profissionais...");
                     lista = fun.emitirRelatorio();
                     for (int o=0; o< lista.size(); o++){
-                        System.out.println("\t"+lista.get(o).getMatricula()+"\t"+lista.get(o).getNome()+"\t"+lista.get(o).getIdade()+
+                        System.out.println("\t"+lista.get(o).getMatricula()+"\t"+lista.get(o).getId_filial()+"\t"+lista.get(o).getNome()+"\t"+lista.get(o).getIdade()+
                                 "\t"+lista.get(o).getSexo()+"\t"+lista.get(o).getContato()+"\t"+lista.get(o).getEndereco()+"\t"+lista.get(o).getHorario());
                     }
                     break;

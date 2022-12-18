@@ -12,8 +12,8 @@ public class EquipamentosDAO {
     private Conexao c;
     private String Relatorio = "select * from equipamentos";
     private String Buscar = "select * from equipamentos where patrimonio = ?";
-    private String Inserir = "insert into equipamentos (patrimonio, nome, status) values(?, ?, ?)";
-    private String Alterar = "update equipamentos set patrimonio=?, nome=?, status=?";
+    private String Inserir = "insert into equipamentos (patrimonio, id_filial, nome, status1) values(?, ?, ?, ?)";
+    private String Alterar = "update equipamentos set patrimonio=?, id_filial=?, nome=?, status1=?";
 
     public EquipamentosDAO(){
         c = new Conexao("jdbc:postgresql://localhost:5432/tadsfit","postgres", "12345");
@@ -27,7 +27,7 @@ public class EquipamentosDAO {
             instrucao.setInt(1, equipamentosAux);
             ResultSet rs = instrucao.executeQuery();
             if(rs.next()){//andando no resultset
-                equipamento = new Equipamentos(rs.getInt("patrimonio"), rs.getString("nome"), rs.getString("status"));
+                equipamento = new Equipamentos(rs.getInt("patrimonio"), rs.getInt("id_filial"), rs.getString("nome"), rs.getString("status1"));
             }
             c.desconectar();
         } catch (Exception e) {
@@ -41,8 +41,9 @@ public class EquipamentosDAO {
             c.conectar();
             PreparedStatement instrucao = c.getConexao().prepareStatement(Inserir);
             instrucao.setInt(1, equipamento.getPatrimonio());
-            instrucao.setString(2, equipamento.getNome());
-            instrucao.setString(3, equipamento.getStatus());
+            instrucao.setInt(2, equipamento.getId_filial());
+            instrucao.setString(3, equipamento.getNome());
+            instrucao.setString(4, equipamento.getStatus1());
             instrucao.execute();
             c.desconectar();
         } catch (SQLException e) {
@@ -58,7 +59,7 @@ public class EquipamentosDAO {
             Statement instrucao = c.getConexao().createStatement();
             ResultSet rs = instrucao.executeQuery(Relatorio);
             while (rs.next()){
-                equipamento = new Equipamentos(rs.getInt("patrimonio"), rs.getString("nome"), rs.getString("status"));
+                equipamento = new Equipamentos(rs.getInt("patrimonio"), rs.getInt("id_filial"),rs.getString("nome"), rs.getString("status1"));
                 lista.add(equipamento);
             }
         }catch (Exception e){
@@ -72,8 +73,9 @@ public class EquipamentosDAO {
             c.conectar();
             PreparedStatement instrucao = c.getConexao().prepareStatement(Alterar);
             instrucao.setInt(1, equipamento.getPatrimonio());
-            instrucao.setString(2, equipamento.getNome());
-            instrucao.setString(3, equipamento.getStatus());
+            instrucao.setInt(2, equipamento.getId_filial());
+            instrucao.setString(3, equipamento.getNome());
+            instrucao.setString(4, equipamento.getStatus1());
             instrucao.execute();
             c.desconectar();
         } catch (SQLException e) {

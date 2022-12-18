@@ -1,44 +1,44 @@
 BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS "Aluno" (
-	"Nome"	String,
-	"Matricula"	INT,
-	"Peso"	INT,
-	"Altura"	FLOAT,
-	"Sexo"	TEXT,
-	"Contato"	NUMERIC,
-	"Endereco"	TEXT,
-	PRIMARY KEY("Matricula")
+CREATE TABLE IF NOT EXISTS aluno (
+	nome TEXT,
+	matricula INT,
+	id_filial INT,
+	id_fun INT,
+	idade INT,
+	peso FLOAT,
+	altura FLOAT,
+	sexo TEXT,
+	contato	TEXT,
+	endereco TEXT,
+	PRIMARY KEY(matricula),
+	FOREIGN KEY(id_filial) REFERENCES filial(idf),
+	FOREIGN KEY(id_fun) REFERENCES funcionarios(matricula)
 );
-CREATE TABLE IF NOT EXISTS "Equipamentos" (
-	"Patrimonio"	INT,
-	"Nome"	STRING,
-	"Status"	STRING,
-	PRIMARY KEY("Patrimonio"),
-	CONSTRAINT "CH_EQP" CHECK("Status" IN ("Em uso", "Manutenção"))
+CREATE TABLE IF NOT EXISTS equipamentos (
+	patrimonio	INT,
+	id_filial INT,
+	nome TEXT,
+	status1 TEXT,
+	PRIMARY KEY(patrimonio),
+	FOREIGN KEY(id_filial) REFERENCES filial(idf)
 );
-CREATE TABLE IF NOT EXISTS "Funcionarios" (
-	"Matricula_Fun"	INT,
-	"Nome"	STRING,
-	"Idade"	INT,
-	"Sexo"	STRING,
-	"Contato"	NUMERIC,
-	"Horario"	STRING,
-	PRIMARY KEY("Matricula_Fun"),
-	FOREIGN KEY("Matricula_Fun") REFERENCES "Filial"("id_F"),
-	CONSTRAINT "CH_SEXOF" CHECK("Sexo" IN ("F", "M"))
+CREATE TABLE IF NOT EXISTS funcionarios (
+	matricula INT,
+	id_filial INT,
+	nome TEXT,
+	idade INT,
+	sexo TEXT,
+	contato	TEXT,
+	horario	TEXT,
+	PRIMARY KEY(matricula),
+	FOREIGN KEY(id_filial) REFERENCES filial(idf)
 );
-CREATE TABLE IF NOT EXISTS "Filial" (
-	"Id"	INT,
-	"Endereco"	STRING,
-	"Contato"	NUMERIC,
-	"Horario "	INT,
-	"id_aluno"	INT,
-	"id_eqp"	INT,
-	"id_f"	INT,
-	PRIMARY KEY("Id","id_aluno","id_eqp","id_f"),
-	FOREIGN KEY("id_f") REFERENCES "Funcionarios"("Matricula_Fun"),
-	FOREIGN KEY("id_aluno") REFERENCES "Aluno"("Matricula"),
-	CONSTRAINT "CH_PT" FOREIGN KEY("id_eqp") REFERENCES "Equipamentos"("Patrimonio")
+CREATE TABLE IF NOT EXISTS filial (
+	idf	INT,
+	endereco TEXT,
+	contato	TEXT,
+	horario	TEXT,
+	PRIMARY KEY(idf)
 );
 INSERT INTO "Aluno" ("Nome","Matricula","Peso","Altura","Sexo","Contato","Endereco") VALUES ('Ramonie',2304,80,1.7,'M',84999999,'Rua');
 INSERT INTO "Equipamentos" ("Patrimonio","Nome","Status") VALUES (1234,'Esteira','Em uso');

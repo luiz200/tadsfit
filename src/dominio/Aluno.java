@@ -2,7 +2,9 @@ package dominio;
 
 public class Aluno {
 
-    private int matricula;
+    private int matricula; //id_filial, id_fun,
+    private int id_filial;
+    private int id_fun;
     private String nome;
     private int idade;
     private float altura;
@@ -11,13 +13,11 @@ public class Aluno {
     private String contato;
     private String endereco;
 
-    public Aluno(){
-
-    }
-
-    public Aluno(int matricula, String nome, int idade, float altura, float peso, String sexo, String contato, String endereco){
+    public Aluno(int matricula, int id_filial, int id_fun, String nome, int idade, float altura, float peso, String sexo, String contato, String endereco){
 
         this.matricula = matricula;
+        this.id_filial = id_filial;
+        this.id_fun = id_fun;
         this.nome = nome;
         this.idade = idade;
         this.altura = altura;
@@ -25,6 +25,10 @@ public class Aluno {
         this.sexo = sexo;
         this.contato = contato;
         this.endereco = endereco;
+
+    }
+
+    public Aluno() {
 
     }
 
@@ -90,5 +94,21 @@ public class Aluno {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public int getId_filial() {
+        return id_filial;
+    }
+
+    public void setId_filial(int id_filial) {
+        this.id_filial = id_filial;
+    }
+
+    public int getId_fun() {
+        return id_fun;
+    }
+
+    public void setId_fun(int id_fun) {
+        this.id_fun = id_fun;
     }
 }

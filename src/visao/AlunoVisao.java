@@ -10,7 +10,7 @@ public class AlunoVisao {
         Scanner sc = new Scanner(System.in);
         AlunoDAO aDao = new AlunoDAO();
         int op=0, matriculaAux;
-        ArrayList<Aluno> lsita = new ArrayList<Aluno>();
+        ArrayList<Aluno> lsita;
         Aluno c;
         do {
             System.out.println("---------------------------------------------------------------------------");
@@ -37,6 +37,8 @@ public class AlunoVisao {
                     }else{
                         System.out.println("Aluno encontrado.");
                         System.out.println("Matrícula: "+c.getMatricula());
+                        System.out.println("Filial: "+c.getId_filial());
+                        System.out.println("Matrícula fun.: "+c.getId_fun());
                         System.out.println("Nome: "+c.getNome());
                         System.out.println("Idade: "+c.getIdade());
                         System.out.println("Altura: "+c.getAltura());
@@ -54,6 +56,10 @@ public class AlunoVisao {
                     if (c == null){
                         c = new Aluno();
                         c.setMatricula(matriculaAux);
+                        System.out.println("Filial: ");
+                        c.setId_filial(sc.nextInt());
+                        System.out.println("matrícula do fun.: ");
+                        c.setId_fun(sc.nextInt());
                         System.out.println("Nome: ");
                         c.setNome(sc.nextLine());
                         System.out.println("Idade: ");
@@ -86,6 +92,10 @@ public class AlunoVisao {
                     else{
                         c = new Aluno();
                         c.setMatricula(matriculaAux);
+                        System.out.println("Filial: ");
+                        c.setId_filial(sc.nextInt());
+                        System.out.println("matrícula do fun.: ");
+                        c.setId_fun(sc.nextInt());
                         System.out.println("Nome: ");
                         c.setNome(sc.nextLine());
                         System.out.println("Idade: ");
@@ -108,7 +118,7 @@ public class AlunoVisao {
                     System.out.println("Listando alunos...");
                     lsita = aDao.emitirRelatorio();
                     for(int o=0; o<lsita.size(); o++){
-                        System.out.println("\t"+lsita.get(o).getMatricula()+"\t"+lsita.get(o).getNome()+"\t"+lsita.get(o).getIdade()+"\t"+lsita.get(o).getAltura()+
+                        System.out.println("\t"+lsita.get(o).getMatricula()+"\t"+lsita.get(o).getId_filial()+"\t"+lsita.get(o).getId_fun()+"\t"+lsita.get(o).getNome()+"\t"+lsita.get(o).getIdade()+"\t"+lsita.get(o).getAltura()+
                                 "\t"+lsita.get(o).getPeso()+"\t"+lsita.get(o).getSexo()+"\t"+lsita.get(o).getContato()+"\t"+lsita.get(o).getContato()+
                                 "\t"+lsita.get(o).getEndereco());
                     }

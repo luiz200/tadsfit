@@ -11,9 +11,9 @@ import java.util.ArrayList;
 public class FilialDAO {
     private Conexao c;
     private String Relatorio = "select * from filial";
-    private String Buscar = "select * from filial where id = ?";
-    private String Inserir = "insert into filial (id, endereco, contato, horario) values(?, ?, ?, ?)";
-    private String Alterar = "update filial set id=?, endereco=?, contato=?, horario=?";
+    private String Buscar = "select * from filial where idf = ?";
+    private String Inserir = "insert into filial (idf, endereco, contato, horario) values(?, ?, ?, ?)";
+    private String Alterar = "update filial set idf=?, endereco=?, contato=?, horario=?";
 
     public FilialDAO(){
         c = new Conexao("jdbc:postgresql://localhost:5432/tadsfit","postgres", "12345");
@@ -27,7 +27,7 @@ public class FilialDAO {
             instrucao.setInt(1, idAux);
             ResultSet rs = instrucao.executeQuery();
             if (rs.next()){//andando no resultset
-                filia = new Filial(rs.getInt("id"), rs.getString("endereco"), rs.getString("contato"), rs.getString("horario"));
+                filia = new Filial(rs.getInt("idf"), rs.getString("endereco"), rs.getString("contato"), rs.getString("horario"));
             }
             c.desconectar();
         } catch (SQLException e) {
@@ -40,7 +40,7 @@ public class FilialDAO {
         try {
             c.conectar();
             PreparedStatement instrucao = c.getConexao().prepareStatement(Inserir);
-            instrucao.setInt(1, filia.getId());
+            instrucao.setInt(1, filia.getIdf());
             instrucao.setString(2, filia.getEndereco());
             instrucao.setString(3, filia.getContato());
             instrucao.setString(4, filia.getHorario());
@@ -58,7 +58,7 @@ public class FilialDAO {
             Statement instrucao = c.getConexao().createStatement();
             ResultSet rs = instrucao.executeQuery(Relatorio);
             while (rs.next()){
-                fila = new Filial(rs.getInt("id"), rs.getString("endereco"), rs.getString("contato"), rs.getString("horario"));
+                fila = new Filial(rs.getInt("idf"), rs.getString("endereco"), rs.getString("contato"), rs.getString("horario"));
                 lista.add(fila);
             }
         }catch (Exception e){
@@ -71,7 +71,7 @@ public class FilialDAO {
         try {
             c.conectar();
             PreparedStatement instrucao = c.getConexao().prepareStatement(Alterar);
-            instrucao.setInt(1, filia.getId());
+            instrucao.setInt(1, filia.getIdf());
             instrucao.setString(2, filia.getEndereco());
             instrucao.setString(3, filia.getContato());
             instrucao.setString(4, filia.getHorario());

@@ -11,7 +11,7 @@ public class EquipamentosVisao {
         Scanner sc = new Scanner(System.in);
         EquipamentosDAO eqDao = new EquipamentosDAO();
         int op1=0, equipamentosAux;
-        ArrayList<Equipamentos> lista = new ArrayList<Equipamentos>();
+        ArrayList<Equipamentos> lista;
         Equipamentos c;
         do {
             System.out.println("---------------------------------------------------------------------------");
@@ -37,8 +37,9 @@ public class EquipamentosVisao {
                     }else{
                         System.out.println("Equimanto encontrado...");
                         System.out.println("Patrimônio: " + c.getPatrimonio());
+                        System.out.println("Filial: " + c.getId_filial());
                         System.out.println("Maquína: " + c.getNome());
-                        System.out.println("Status: " + c.getStatus());
+                        System.out.println("Status: " + c.getStatus1());
                     }
                     break;
                 case 2:
@@ -49,10 +50,12 @@ public class EquipamentosVisao {
                     if (c == null){
                         c = new Equipamentos();
                         c.setPatrimonio(equipamentosAux);
+                        System.out.println("Filial: ");
+                        c.setId_filial(sc.nextInt());
                         System.out.println("Nome do equipamento: ");
                         c.setNome(sc.nextLine());
-                        c.setStatus("Status do equipamento: ");
-                        c.setStatus(sc.nextLine());
+                        c.setStatus1("Status do equipamento: ");
+                        c.setStatus1(sc.nextLine());
                         eqDao.inserir(c);
                         System.out.println("Equipamento incluído com sucesso!");
                     } else{
@@ -69,10 +72,12 @@ public class EquipamentosVisao {
                     } else{
                         c = new Equipamentos();
                         c.setPatrimonio(equipamentosAux);
+                        System.out.println("Filial: ");
+                        c.setId_filial(sc.nextInt());
                         System.out.println("Nome do equipamento: ");
                         c.setNome(sc.nextLine());
-                        c.setStatus("Status do equipamento: ");
-                        c.setStatus(sc.nextLine());
+                        c.setStatus1("Status do equipamento: ");
+                        c.setStatus1(sc.nextLine());
                         eqDao.inserir(c);
                         System.out.println("Equipamento atualizado com sucesso!");
                     }
@@ -81,7 +86,7 @@ public class EquipamentosVisao {
                     System.out.println("Listando equipamentos...");
                     lista = eqDao.emitirRelatorio();
                     for (int o = 0; o<= lista.size(); o++){
-                        System.out.println("\t"+lista.get(o).getPatrimonio()+"\t"+lista.get(o).getNome()+"\t"+lista.get(o).getStatus());
+                        System.out.println("\t"+lista.get(o).getPatrimonio()+"\t"+lista.get(o).getId_filial()+"\t"+lista.get(o).getNome()+"\t"+lista.get(o).getStatus1());
                     }
                     break;
                 default:

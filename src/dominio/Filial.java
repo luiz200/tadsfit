@@ -2,37 +2,28 @@ package dominio;
 
 public class Filial {
 
-    private int id;
+    private int idf;
     private String endereco;
     private String contato;
     private String horario;
-    
-    public void estadoFilial() {
-    	System.out.println("------------------------------------------");
-    	System.out.println("Filial: "+this.getId());
-    	System.out.println("Endereço: "+this.getEndereco());
-    	System.out.println("Contato: "+this.getContato());
-    	System.out.println("Horário de Funcionamento: "+this.getHorario());
-    	System.out.println("------------------------------------------");
-    };
 
     public Filial(){
 
     }
 
-    public Filial(int id, String endereco, String contato, String horario){
-        this.id = id;
+    public Filial(int idf, String endereco, String contato, String horario){
+        this.idf = idf;
         this.endereco = endereco;
         this.contato = contato;
         this.horario = horario;
     }
 
-    public int getId() {
-        return id;
+    public int getIdf() {
+        return idf;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdf(int idf) {
+        this.idf = idf;
     }
 
     public String getEndereco() {

@@ -11,7 +11,7 @@ public class FilialVisao {
         Scanner sc = new Scanner(System.in);
         FilialDAO fi = new FilialDAO();
         int op2 = 0, idAux;
-        ArrayList<Filial> lista = new ArrayList<Filial>();
+        ArrayList<Filial> lista;
         Filial c;
         do {
             System.out.println("---------------------------------------------------------------------------");
@@ -35,7 +35,7 @@ public class FilialVisao {
                         System.out.println("Atenção, essa filial não existe.");
                     }else{
                         System.out.println("Filial encontrada...");
-                        System.out.println("Filial: " + c.getId());
+                        System.out.println("Filial: " + c.getIdf());
                         System.out.println("Endereço: " + c.getEndereco());
                         System.out.println("Contato: " + c.getContato());
                         System.out.println("Horário: " + c.getHorario());
@@ -48,7 +48,7 @@ public class FilialVisao {
                     c = fi.buscar(idAux);
                     if (c == null){
                         c = new Filial();
-                        c.setId(idAux);
+                        c.setIdf(idAux);
                         System.out.println("Endereço da filial: ");
                         c.setEndereco(sc.nextLine());
                         System.out.println("Contato da filial: ");
@@ -70,7 +70,7 @@ public class FilialVisao {
                         System.out.println("Filial não está cadastrada!");
                     }else{
                         c = new Filial();
-                        c.setId(idAux);
+                        c.setIdf(idAux);
                         System.out.println("Endereço da filial: ");
                         c.setEndereco(sc.nextLine());
                         System.out.println("Contato da filial: ");
@@ -85,7 +85,7 @@ public class FilialVisao {
                     System.out.println("Listando filiais...");
                     lista = fi.emitirRelatorio();
                     for(int o=0; o< lista.size(); o++){
-                        System.out.println("\t"+lista.get(o).getId()+"\t"+lista.get(o).getEndereco()+"\t"+lista.get(o).getContato()+"\t"+lista.get(o).getHorario());
+                        System.out.println("\t"+lista.get(o).getIdf()+"\t"+lista.get(o).getEndereco()+"\t"+lista.get(o).getContato()+"\t"+lista.get(o).getHorario());
                     }
                     break;
                 default:

@@ -3,25 +3,21 @@ package dominio;
 public class Equipamentos {
 
     private int patrimonio;
+    private int id_filial;
+
     private String nome;
-    private String status;
-    
-    public void estadoEquipamento() {
-    	System.out.println("------------------------------------------");
-    	System.out.println("Patrimonio: "+this.getPatrimonio());
-    	System.out.println("Máquina: "+this.getNome());
-    	System.out.println("Status: "+this.getStatus());
-    	System.out.println("------------------------------------------");
-    };
-    public Equipamentos(){
+    private String status1;
+
+    public Equipamentos(int patrimonio, int id_filial, String nome, String status1){
+
+        this.patrimonio = patrimonio;
+        this.id_filial = id_filial;
+        this.nome = nome;
+        this.status1 = status1;
 
     }
 
-    public Equipamentos(int patrimonio, String nome, String status){
-
-        this.patrimonio = patrimonio;
-        this.nome = nome;
-        this.status = status;
+    public Equipamentos() {
 
     }
 
@@ -41,11 +37,19 @@ public class Equipamentos {
         this.nome = nome;
     }
 
-    public String getStatus() {
-        return status;
+    public String getStatus1() {
+        return status1;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatus1(String status1) {
+        this.status1 = status1;
+    }
+
+    public int getId_filial() {
+        return id_filial;
+    }
+
+    public void setId_filial(int id_filial) {
+        this.id_filial = id_filial;
     }
 }
