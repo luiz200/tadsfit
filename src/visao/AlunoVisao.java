@@ -18,6 +18,7 @@ public class AlunoVisao {
             System.out.println("2 - Cadastrar aluno");
             System.out.println("3 - Atualizar aluno");
             System.out.println("4 - Listar alunos");
+            System.out.println("5 - Desligar aluno");
             System.out.println("0 - Sair");
             System.out.println("---------------------------------------------------------------------------");
             System.out.print("Digite a opção desejada: ");
@@ -105,12 +106,28 @@ public class AlunoVisao {
                     break;
                 case 4:
                     System.out.println("Listando alunos...");
-
+                    lsita = aDao.emitirRelatorio();
+                    for(int o=0; o<lsita.size(); o++){
+                        System.out.println("\t"+lsita.get(o).getMatricula()+"\t"+lsita.get(o).getNome()+"\t"+lsita.get(o).getIdade()+"\t"+lsita.get(o).getAltura()+
+                                "\t"+lsita.get(o).getPeso()+"\t"+lsita.get(o).getSexo()+"\t"+lsita.get(o).getContato()+"\t"+lsita.get(o).getContato()+
+                                "\t"+lsita.get(o).getEndereco());
+                    }
+                    break;
+                case 5:
+                    System.out.println("Desligando aluno...");
+                    System.out.println("Digite a matrícula do aluno: ");
+                    matriculaAux = sc.nextInt();
+                    sc.nextLine();
+                    c = aDao.buscar(matriculaAux);
+                    if(c==null) {
+                        System.out.println("Aluno não cadastrado");
+                    }else {
+                        aDao.excluir(matriculaAux);
+                        System.out.println("Desligamento realizado com sucesso!");
+                    }
                     break;
                 default:
                     System.out.println("Opção inválida!");
-                    lsita = aDao.emitirRelatorio();
-
                     break;
             }
         }while (true);

@@ -14,6 +14,7 @@ public class AlunoDAO {
     private String Busca = "select * from aluno where matricula = ?";
     private String Inserir = "insert into aluno (matricula, nome, idade, altura, peso, sexo, contato, endereco) values(?, ?, ?, ?, ?, ?, ?, ?)";
     private String Alterar = "update aluno set matricula=?, nome=?, idade=?, altura=?, peso=?, sexo=?, contato=?, endereco=?";
+    private String Deletar = "delete from aluno where matricula=?";
 
     public AlunoDAO(){
         c = new Conexao("jdbc:postgresql://localhost:5432/tadsfit","postgres", "12345");
@@ -90,6 +91,17 @@ public class AlunoDAO {
 
         } catch (Exception e) {
             System.out.println("Erro na alteração");
+        }
+    }
+    public void excluir(int matriculaAux){
+        try {
+            c.conectar();
+            PreparedStatement instrucao = c.getConexao().prepareStatement(Deletar);
+            instrucao.setInt(1, matriculaAux);
+            instrucao.execute();
+            c.desconectar();
+        } catch (SQLException e) {
+            System.out.println("erro");
         }
     }
 }
