@@ -19,9 +19,8 @@ public class Conexao {
         try {
             Class.forName("org.postgresql.Driver");//carrega o driver do postgres
             minhaConexao = DriverManager.getConnection(caminho, usuario, senha);//abrir a conexao
-            System.out.println("Conexão realizada com sucesso");
         }catch (Exception e){
-            System.out.println("Erro na conexão");
+            System.out.println(e);
         }
     }
 
@@ -29,7 +28,7 @@ public class Conexao {
         try{
             minhaConexao.close();
         }catch (Exception e){
-            System.out.println("Erro na desconexão...");
+            System.out.println(e);
         }
     }
 

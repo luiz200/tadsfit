@@ -1,6 +1,8 @@
 package visao;
 
+import dominio.Filial;
 import dominio.Funcionarios;
+import persistencia.FilialDAO;
 import persistencia.FuncionariosDAO;
 
 import java.util.ArrayList;
@@ -10,9 +12,11 @@ public class FuncionariosVisao {
     public void visao() {
         Scanner sc = new Scanner(System.in);
         FuncionariosDAO fun = new FuncionariosDAO();
-        int op3 = 0, matriculaAux;
+        FilialDAO fi = new FilialDAO();
+        int op3 = 0, matriculaAux, idAux;
         ArrayList<Funcionarios> lista;
         Funcionarios c;
+        Filial f;
         do {
             System.out.println("---------------------------------------------------------------------------");
             System.out.println("1 - Ficha do funcionário");
@@ -25,7 +29,6 @@ public class FuncionariosVisao {
             System.out.print("Digite a opção desejada: ");
             op3 = sc.nextInt();
             if (op3 == 0) {
-                System.out.println("");
                 break;
             }
             switch (op3) {
@@ -56,23 +59,29 @@ public class FuncionariosVisao {
                         c.setMatricula(matriculaAux);
                         sc.nextLine();
                         System.out.println("Digite a filial");
-                        c.setId_filial(sc.nextInt());
-                        sc.nextLine();
-                        System.out.println("Digite o nome: ");
-                        c.setNome(sc.nextLine());
-                        System.out.println("Digite a idade: ");
-                        c.setIdade(sc.nextInt());
-                        sc.nextLine();
-                        System.out.println("Digite o sexo: ");
-                        c.setSexo(sc.nextLine());
-                        System.out.println("Digite o contato: ");
-                        c.setContato(sc.nextLine());
-                        System.out.println("Digite o endereço: ");
-                        c.setEndereco(sc.nextLine());
-                        System.out.println("Digite o horário: ");
-                        c.setHorario(sc.nextLine());
-                        fun.inserir(c);
-                        System.out.println("Funcionário cadastrado com sucesso!");
+                        idAux = sc.nextInt();
+                        f = fi.buscar(idAux);
+                        if(f==null){
+                            System.out.println("Essa filial não existe.");
+                        }else{
+                            c.setId_filial(idAux);
+                            sc.nextLine();
+                            System.out.println("Digite o nome: ");
+                            c.setNome(sc.nextLine());
+                            System.out.println("Digite a idade: ");
+                            c.setIdade(sc.nextInt());
+                            sc.nextLine();
+                            System.out.println("Digite o sexo: ");
+                            c.setSexo(sc.nextLine());
+                            System.out.println("Digite o contato: ");
+                            c.setContato(sc.nextLine());
+                            System.out.println("Digite o endereço: ");
+                            c.setEndereco(sc.nextLine());
+                            System.out.println("Digite o horário: ");
+                            c.setHorario(sc.nextLine());
+                            fun.inserir(c);
+                            System.out.println("Funcionário cadastrado com sucesso!");
+                        }
                     }else{
                         System.out.println("Esse profissional já tem cadastro!");
                     }
@@ -88,23 +97,29 @@ public class FuncionariosVisao {
                         c.setMatricula(matriculaAux);
                         sc.nextLine();
                         System.out.println("Digite a filial");
-                        c.setId_filial(sc.nextInt());
-                        sc.nextLine();
-                        System.out.println("Digite o nome: ");
-                        c.setNome(sc.nextLine());
-                        System.out.println("Digite a idade: ");
-                        c.setIdade(sc.nextInt());
-                        sc.nextLine();
-                        System.out.println("Digite o sexo: ");
-                        c.setSexo(sc.nextLine());
-                        System.out.println("Digite o contato: ");
-                        c.setContato(sc.nextLine());
-                        System.out.println("Digite o endereço: ");
-                        c.setEndereco(sc.nextLine());
-                        System.out.println("Digite o horário: ");
-                        c.setHorario(sc.nextLine());
-                        fun.alterar(c);
-                        System.out.println("Funcionário cadastrado com sucesso!");
+                        idAux = sc.nextInt();
+                        f = fi.buscar(idAux);
+                        if(f==null){
+                            System.out.println("Essa filial não existe.");
+                        }else{
+                            c.setId_filial(idAux);
+                            sc.nextLine();
+                            System.out.println("Digite o nome: ");
+                            c.setNome(sc.nextLine());
+                            System.out.println("Digite a idade: ");
+                            c.setIdade(sc.nextInt());
+                            sc.nextLine();
+                            System.out.println("Digite o sexo: ");
+                            c.setSexo(sc.nextLine());
+                            System.out.println("Digite o contato: ");
+                            c.setContato(sc.nextLine());
+                            System.out.println("Digite o endereço: ");
+                            c.setEndereco(sc.nextLine());
+                            System.out.println("Digite o horário: ");
+                            c.setHorario(sc.nextLine());
+                            fun.alterar(c);
+                            System.out.println("Funcionário atualizado com sucesso!");
+                        }
                     }
                     break;
                 case 4:

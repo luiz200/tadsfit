@@ -1,7 +1,9 @@
 package visao;
 
 import dominio.Equipamentos;
+import dominio.Filial;
 import persistencia.EquipamentosDAO;
+import persistencia.FilialDAO;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,9 +12,11 @@ public class EquipamentosVisao {
     public void visao(){
         Scanner sc = new Scanner(System.in);
         EquipamentosDAO eqDao = new EquipamentosDAO();
-        int op1=0, equipamentosAux;
+        FilialDAO fi = new FilialDAO();
+        int op1=0, equipamentosAux, idAux;
         ArrayList<Equipamentos> lista;
         Equipamentos c;
+        Filial f;
         do {
             System.out.println("---------------------------------------------------------------------------");
             System.out.println("1 - Buscar do equipamento");
@@ -24,7 +28,6 @@ public class EquipamentosVisao {
             System.out.print("Digite a opção desejada: ");
             op1 = sc.nextInt();
             if(op1 == 0){
-                System.out.println("");
                 break;
             }
             switch (op1){
@@ -52,14 +55,20 @@ public class EquipamentosVisao {
                         c.setPatrimonio(equipamentosAux);
                         sc.nextLine();
                         System.out.println("Filial: ");
-                        c.setId_filial(sc.nextInt());
-                        sc.nextLine();
-                        System.out.println("Nome do equipamento: ");
-                        c.setNome(sc.nextLine());
-                        c.setStatus1("Status do equipamento: ");
-                        c.setStatus1(sc.nextLine());
-                        eqDao.inserir(c);
-                        System.out.println("Equipamento incluído com sucesso!");
+                        idAux = sc.nextInt();
+                        f = fi.buscar(idAux);
+                        if (f==null){
+                            System.out.println("filial não existe");
+                        }else{
+                            c.setId_filial(idAux);
+                            sc.nextLine();
+                            System.out.println("Nome do equipamento: ");
+                            c.setNome(sc.nextLine());
+                            c.setStatus1("Status do equipamento: ");
+                            c.setStatus1(sc.nextLine());
+                            eqDao.inserir(c);
+                            System.out.println("Equipamento incluído com sucesso!");
+                        }
                     } else{
                         System.out.println("Equipamento já está cadastrado!");
                     }
@@ -76,14 +85,20 @@ public class EquipamentosVisao {
                         c.setPatrimonio(equipamentosAux);
                         sc.nextLine();
                         System.out.println("Filial: ");
-                        c.setId_filial(sc.nextInt());
-                        sc.nextLine();
-                        System.out.println("Nome do equipamento: ");
-                        c.setNome(sc.nextLine());
-                        c.setStatus1("Status do equipamento: ");
-                        c.setStatus1(sc.nextLine());
-                        eqDao.alterar(c);
-                        System.out.println("Equipamento atualizado com sucesso!");
+                        idAux = sc.nextInt();
+                        f = fi.buscar(idAux);
+                        if (f==null){
+                            System.out.println("filial não existe");
+                        }else{
+                            c.setId_filial(idAux);
+                            sc.nextLine();
+                            System.out.println("Nome do equipamento: ");
+                            c.setNome(sc.nextLine());
+                            c.setStatus1("Status do equipamento: ");
+                            c.setStatus1(sc.nextLine());
+                            eqDao.alterar(c);
+                            System.out.println("Equipamento atualizado com sucesso!");
+                        }
                     }
                     break;
                 case 4:
