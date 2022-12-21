@@ -13,7 +13,7 @@ public class AlunoDAO {
     private String Relatorio = "select * from aluno";
     private String Busca = "select * from aluno where matricula = ?";
     private String Inserir = "insert into aluno (nome, matricula, id_filial, id_fun, idade, altura, peso, sexo, contato, endereco) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private String Alterar = "update aluno set matricula=?, id_filial=?, id_fun=?, nome=?, idade=?, altura=?, peso=?, sexo=?, contato=?, endereco=? where matricula=? where matricula=?";
+    private String Alterar = "update aluno set matricula=?, id_filial=?, id_fun=?, nome=?, idade=?, altura=?, peso=?, sexo=?, contato=?, endereco=? where matricula=?";
     private String Deletar = "delete from aluno where matricula=?";
 
     public AlunoDAO(){

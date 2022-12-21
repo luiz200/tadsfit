@@ -1,8 +1,10 @@
 package visao;
 
 import dominio.Aluno;
+import dominio.Filial;
 import dominio.Funcionarios;
 import persistencia.AlunoDAO;
+import persistencia.FilialDAO;
 import persistencia.FuncionariosDAO;
 
 import java.util.Scanner;
@@ -13,10 +15,12 @@ public class AlunoVisao {
         Scanner sc = new Scanner(System.in);
         AlunoDAO aDao = new AlunoDAO();
         FuncionariosDAO fun = new FuncionariosDAO();
-        int op=0, matriculaAux;
+        FilialDAO fi = new FilialDAO();
+        int op=0, matriculaAux, idAux;
         ArrayList<Aluno> lsita;
         Aluno c;
         Funcionarios p;
+        Filial f;
         do {
             System.out.println("---------------------------------------------------------------------------");
             System.out.println("1 - Ficha do aluno");
@@ -63,32 +67,39 @@ public class AlunoVisao {
                         c.setMatricula(matriculaAux);
                         sc.nextLine();
                         System.out.println("Filial: ");
-                        c.setId_filial(sc.nextInt());
-                        System.out.println("matrícula do fun.: ");
-                        matriculaAux = sc.nextInt();
-                        p = fun.buscar(matriculaAux);
-                        if(p == null){
-                            System.out.println("Esse funcionario não existe!");
-                        } else{
-                            c.setId_fun(matriculaAux);
+                        idAux = sc.nextInt();
+                        f = fi.buscar(idAux);
+                        if(f==null){
+                            System.out.println("Este funcionário não existe");
+                        }else{
+                            c.setId_filial(idAux);
                             sc.nextLine();
-                            System.out.println("Nome: ");
-                            c.setNome(sc.nextLine());
-                            System.out.println("Idade: ");
-                            c.setIdade(sc.nextInt());
-                            System.out.println("Altura: ");
-                            c.setAltura(sc.nextFloat());
-                            System.out.println("Peso: ");
-                            c.setPeso(sc.nextFloat());
-                            sc.nextLine();
-                            System.out.println("Sexo: ");
-                            c.setSexo(sc.nextLine());
-                            System.out.println("Contato: ");
-                            c.setContato(sc.nextLine());
-                            System.out.println("Endereço: ");
-                            c.setEndereco(sc.nextLine());
-                            aDao.inserir(c);
-                            System.out.println("incluido com sucesso");
+                            System.out.println("matrícula do fun.: ");
+                            matriculaAux = sc.nextInt();
+                            p = fun.buscar(matriculaAux);
+                            if(p == null){
+                                System.out.println("Esse funcionario não existe!");
+                            } else{
+                                c.setId_fun(matriculaAux);
+                                sc.nextLine();
+                                System.out.println("Nome: ");
+                                c.setNome(sc.nextLine());
+                                System.out.println("Idade: ");
+                                c.setIdade(sc.nextInt());
+                                System.out.println("Altura: ");
+                                c.setAltura(sc.nextFloat());
+                                System.out.println("Peso: ");
+                                c.setPeso(sc.nextFloat());
+                                sc.nextLine();
+                                System.out.println("Sexo: ");
+                                c.setSexo(sc.nextLine());
+                                System.out.println("Contato: ");
+                                c.setContato(sc.nextLine());
+                                System.out.println("Endereço: ");
+                                c.setEndereco(sc.nextLine());
+                                aDao.inserir(c);
+                                System.out.println("incluido com sucesso");
+                            }
                         }
                     }
                     else{
@@ -108,32 +119,39 @@ public class AlunoVisao {
                         c.setMatricula(matriculaAux);
                         sc.nextLine();
                         System.out.println("Filial: ");
-                        c.setId_filial(sc.nextInt());
-                        System.out.println("matrícula do fun.: ");
-                        matriculaAux = sc.nextInt();
-                        p = fun.buscar(matriculaAux);
-                        if(p == null){
-                            System.out.println("Esse funcionario não existe!");
-                        } else{
-                            c.setId_fun(matriculaAux);
+                        idAux = sc.nextInt();
+                        f = fi.buscar(idAux);
+                        if(f==null){
+                            System.out.println("Este funcionário não existe");
+                        }else{
+                            c.setId_filial(idAux);
                             sc.nextLine();
-                            System.out.println("Nome: ");
-                            c.setNome(sc.nextLine());
-                            System.out.println("Idade: ");
-                            c.setIdade(sc.nextInt());
-                            System.out.println("Altura: ");
-                            c.setAltura(sc.nextFloat());
-                            System.out.println("Peso: ");
-                            c.setPeso(sc.nextFloat());
-                            sc.nextLine();
-                            System.out.println("Sexo: ");
-                            c.setSexo(sc.nextLine());
-                            System.out.println("Contato: ");
-                            c.setContato(sc.nextLine());
-                            System.out.println("Endereço: ");
-                            c.setEndereco(sc.nextLine());
-                            aDao.alterar(c);
-                            System.out.println("atualização realizada com sucesso");
+                            System.out.println("matrícula do fun.: ");
+                            matriculaAux = sc.nextInt();
+                            p = fun.buscar(matriculaAux);
+                            if(p == null){
+                                System.out.println("Esse funcionario não existe!");
+                            } else{
+                                c.setId_fun(matriculaAux);
+                                sc.nextLine();
+                                System.out.println("Nome: ");
+                                c.setNome(sc.nextLine());
+                                System.out.println("Idade: ");
+                                c.setIdade(sc.nextInt());
+                                System.out.println("Altura: ");
+                                c.setAltura(sc.nextFloat());
+                                System.out.println("Peso: ");
+                                c.setPeso(sc.nextFloat());
+                                sc.nextLine();
+                                System.out.println("Sexo: ");
+                                c.setSexo(sc.nextLine());
+                                System.out.println("Contato: ");
+                                c.setContato(sc.nextLine());
+                                System.out.println("Endereço: ");
+                                c.setEndereco(sc.nextLine());
+                                aDao.alterar(c);
+                                System.out.println("incluido com sucesso");
+                            }
                         }
                     }
                     break;
