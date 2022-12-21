@@ -80,7 +80,7 @@ public class EquipamentosDAO {
             instrucao.execute();
             c.desconectar();
         } catch (SQLException e) {
-            System.out.println("Erro na alteração");
+            System.out.println(e);
         }
     }
 }

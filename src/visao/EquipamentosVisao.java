@@ -82,14 +82,14 @@ public class EquipamentosVisao {
                         c.setNome(sc.nextLine());
                         c.setStatus1("Status do equipamento: ");
                         c.setStatus1(sc.nextLine());
-                        eqDao.inserir(c);
+                        eqDao.alterar(c);
                         System.out.println("Equipamento atualizado com sucesso!");
                     }
                     break;
                 case 4:
                     System.out.println("Listando equipamentos...");
                     lista = eqDao.emitirRelatorio();
-                    for (int o = 0; o<= lista.size(); o++){
+                    for (int o = 0; o< lista.size(); o++){
                         System.out.println("\t"+lista.get(o).getPatrimonio()+"\t"+lista.get(o).getId_filial()+"\t"+lista.get(o).getNome()+"\t"+lista.get(o).getStatus1());
                     }
                     break;

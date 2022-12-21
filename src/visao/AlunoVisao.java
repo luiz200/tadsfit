@@ -1,7 +1,10 @@
 package visao;
 
 import dominio.Aluno;
+import dominio.Funcionarios;
 import persistencia.AlunoDAO;
+import persistencia.FuncionariosDAO;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -9,9 +12,11 @@ public class AlunoVisao {
     public void visao(){
         Scanner sc = new Scanner(System.in);
         AlunoDAO aDao = new AlunoDAO();
+        FuncionariosDAO fun = new FuncionariosDAO();
         int op=0, matriculaAux;
         ArrayList<Aluno> lsita;
         Aluno c;
+        Funcionarios p;
         do {
             System.out.println("---------------------------------------------------------------------------");
             System.out.println("1 - Ficha do aluno");
@@ -60,25 +65,31 @@ public class AlunoVisao {
                         System.out.println("Filial: ");
                         c.setId_filial(sc.nextInt());
                         System.out.println("matrícula do fun.: ");
-                        c.setId_fun(sc.nextInt());
-                        sc.nextLine();
-                        System.out.println("Nome: ");
-                        c.setNome(sc.nextLine());
-                        System.out.println("Idade: ");
-                        c.setIdade(sc.nextInt());
-                        System.out.println("Altura: ");
-                        c.setAltura(sc.nextFloat());
-                        System.out.println("Peso: ");
-                        c.setPeso(sc.nextFloat());
-                        sc.nextLine();
-                        System.out.println("Sexo: ");
-                        c.setSexo(sc.nextLine());
-                        System.out.println("Contato: ");
-                        c.setContato(sc.nextLine());
-                        System.out.println("Endereço: ");
-                        c.setEndereco(sc.nextLine());
-                        aDao.inserir(c);
-                        System.out.println("incluido com sucesso");
+                        matriculaAux = sc.nextInt();
+                        p = fun.buscar(matriculaAux);
+                        if(p == null){
+                            System.out.println("Esse funcionario não existe!");
+                        } else{
+                            c.setId_fun(matriculaAux);
+                            sc.nextLine();
+                            System.out.println("Nome: ");
+                            c.setNome(sc.nextLine());
+                            System.out.println("Idade: ");
+                            c.setIdade(sc.nextInt());
+                            System.out.println("Altura: ");
+                            c.setAltura(sc.nextFloat());
+                            System.out.println("Peso: ");
+                            c.setPeso(sc.nextFloat());
+                            sc.nextLine();
+                            System.out.println("Sexo: ");
+                            c.setSexo(sc.nextLine());
+                            System.out.println("Contato: ");
+                            c.setContato(sc.nextLine());
+                            System.out.println("Endereço: ");
+                            c.setEndereco(sc.nextLine());
+                            aDao.inserir(c);
+                            System.out.println("incluido com sucesso");
+                        }
                     }
                     else{
                         System.out.println("Aluno já matrículado na TADSFIT.");
@@ -98,26 +109,32 @@ public class AlunoVisao {
                         sc.nextLine();
                         System.out.println("Filial: ");
                         c.setId_filial(sc.nextInt());
-                        sc.nextLine();
                         System.out.println("matrícula do fun.: ");
-                        c.setId_fun(sc.nextInt());
-                        sc.nextLine();
-                        System.out.println("Nome: ");
-                        c.setNome(sc.nextLine());
-                        System.out.println("Idade: ");
-                        c.setIdade(sc.nextInt());
-                        System.out.println("Altura: ");
-                        c.setAltura(sc.nextFloat());
-                        System.out.println("Peso: ");
-                        c.setPeso(sc.nextFloat());
-                        sc.nextLine();
-                        System.out.println("Sexo: ");
-                        c.setSexo(sc.nextLine());
-                        System.out.println("Contato: ");
-                        c.setContato(sc.nextLine());
-                        System.out.println("Endereço: ");
-                        c.setEndereco(sc.nextLine());
-                        aDao.alterar(c);
+                        matriculaAux = sc.nextInt();
+                        p = fun.buscar(matriculaAux);
+                        if(p == null){
+                            System.out.println("Esse funcionario não existe!");
+                        } else{
+                            c.setId_fun(matriculaAux);
+                            sc.nextLine();
+                            System.out.println("Nome: ");
+                            c.setNome(sc.nextLine());
+                            System.out.println("Idade: ");
+                            c.setIdade(sc.nextInt());
+                            System.out.println("Altura: ");
+                            c.setAltura(sc.nextFloat());
+                            System.out.println("Peso: ");
+                            c.setPeso(sc.nextFloat());
+                            sc.nextLine();
+                            System.out.println("Sexo: ");
+                            c.setSexo(sc.nextLine());
+                            System.out.println("Contato: ");
+                            c.setContato(sc.nextLine());
+                            System.out.println("Endereço: ");
+                            c.setEndereco(sc.nextLine());
+                            aDao.alterar(c);
+                            System.out.println("atualização realizada com sucesso");
+                        }
                     }
                     break;
                 case 4:
