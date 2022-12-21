@@ -13,7 +13,7 @@ public class AlunoDAO {
     private String Relatorio = "select * from aluno";
     private String Busca = "select * from aluno where matricula = ?";
     private String Inserir = "insert into aluno (nome, matricula, id_filial, id_fun, idade, altura, peso, sexo, contato, endereco) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private String Alterar = "update aluno set matricula=?, id_filial=?, id_fun=?, nome=?, idade=?, altura=?, peso=?, sexo=?, contato=?, endereco=?";
+    private String Alterar = "update aluno set matricula=?, id_filial=?, id_fun=?, nome=?, idade=?, altura=?, peso=?, sexo=?, contato=?, endereco=? where matricula=? where matricula=?";
     private String Deletar = "delete from aluno where matricula=?";
 
     public AlunoDAO(){
@@ -41,10 +41,10 @@ public class AlunoDAO {
         try{
             c.conectar();
             PreparedStatement instrucao = c.getConexao().prepareStatement(Inserir);
-            instrucao.setInt(1, pessoa.getMatricula());
-            instrucao.setInt(2, pessoa.getId_filial());
-            instrucao.setInt(3, pessoa.getId_fun());
-            instrucao.setString(4, pessoa.getNome());
+            instrucao.setString(1, pessoa.getNome());
+            instrucao.setInt(2, pessoa.getMatricula());
+            instrucao.setInt(3, pessoa.getId_filial());
+            instrucao.setInt(4, pessoa.getId_fun());
             instrucao.setInt(5, pessoa.getIdade());
             instrucao.setFloat(6, pessoa.getAltura());
             instrucao.setFloat(7, pessoa.getPeso());
@@ -54,8 +54,8 @@ public class AlunoDAO {
             instrucao.execute();
             c.desconectar();
 
-        } catch (Exception e) {
-            System.out.println("Erro na inclusão");
+        } catch (SQLException e) {
+            System.out.println(e);
         }
     }
 
@@ -90,11 +90,12 @@ public class AlunoDAO {
             instrucao.setString(8, pessoa.getSexo());
             instrucao.setString(9, pessoa.getContato());
             instrucao.setString(10, pessoa.getEndereco());
+            instrucao.setInt(11, pessoa.getMatricula());
             instrucao.execute();
             c.desconectar();
 
-        } catch (Exception e) {
-            System.out.println("Erro na alteração");
+        } catch (SQLException e) {
+            System.out.println(e);
         }
     }
     public void excluir(int matriculaAux){

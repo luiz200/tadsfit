@@ -56,10 +56,12 @@ public class AlunoVisao {
                     if (c == null){
                         c = new Aluno();
                         c.setMatricula(matriculaAux);
+                        sc.nextLine();
                         System.out.println("Filial: ");
                         c.setId_filial(sc.nextInt());
                         System.out.println("matrícula do fun.: ");
                         c.setId_fun(sc.nextInt());
+                        sc.nextLine();
                         System.out.println("Nome: ");
                         c.setNome(sc.nextLine());
                         System.out.println("Idade: ");
@@ -68,6 +70,7 @@ public class AlunoVisao {
                         c.setAltura(sc.nextFloat());
                         System.out.println("Peso: ");
                         c.setPeso(sc.nextFloat());
+                        sc.nextLine();
                         System.out.println("Sexo: ");
                         c.setSexo(sc.nextLine());
                         System.out.println("Contato: ");
@@ -92,10 +95,13 @@ public class AlunoVisao {
                     else{
                         c = new Aluno();
                         c.setMatricula(matriculaAux);
+                        sc.nextLine();
                         System.out.println("Filial: ");
                         c.setId_filial(sc.nextInt());
+                        sc.nextLine();
                         System.out.println("matrícula do fun.: ");
                         c.setId_fun(sc.nextInt());
+                        sc.nextLine();
                         System.out.println("Nome: ");
                         c.setNome(sc.nextLine());
                         System.out.println("Idade: ");
@@ -104,6 +110,7 @@ public class AlunoVisao {
                         c.setAltura(sc.nextFloat());
                         System.out.println("Peso: ");
                         c.setPeso(sc.nextFloat());
+                        sc.nextLine();
                         System.out.println("Sexo: ");
                         c.setSexo(sc.nextLine());
                         System.out.println("Contato: ");
@@ -111,7 +118,6 @@ public class AlunoVisao {
                         System.out.println("Endereço: ");
                         c.setEndereco(sc.nextLine());
                         aDao.alterar(c);
-                        System.out.println("atualizado com sucesso");
                     }
                     break;
                 case 4:

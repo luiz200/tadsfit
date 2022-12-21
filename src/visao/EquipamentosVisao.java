@@ -50,8 +50,10 @@ public class EquipamentosVisao {
                     if (c == null){
                         c = new Equipamentos();
                         c.setPatrimonio(equipamentosAux);
+                        sc.nextLine();
                         System.out.println("Filial: ");
                         c.setId_filial(sc.nextInt());
+                        sc.nextLine();
                         System.out.println("Nome do equipamento: ");
                         c.setNome(sc.nextLine());
                         c.setStatus1("Status do equipamento: ");
@@ -72,8 +74,10 @@ public class EquipamentosVisao {
                     } else{
                         c = new Equipamentos();
                         c.setPatrimonio(equipamentosAux);
+                        sc.nextLine();
                         System.out.println("Filial: ");
                         c.setId_filial(sc.nextInt());
+                        sc.nextLine();
                         System.out.println("Nome do equipamento: ");
                         c.setNome(sc.nextLine());
                         c.setStatus1("Status do equipamento: ");

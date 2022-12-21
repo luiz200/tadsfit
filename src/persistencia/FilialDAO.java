@@ -13,7 +13,7 @@ public class FilialDAO {
     private String Relatorio = "select * from filial";
     private String Buscar = "select * from filial where idf = ?";
     private String Inserir = "insert into filial (idf, endereco, contato, horario) values(?, ?, ?, ?)";
-    private String Alterar = "update filial set idf=?, endereco=?, contato=?, horario=?";
+    private String Alterar = "update filial set idf=?, endereco=?, contato=?, horario=? where idf=?";
 
     public FilialDAO(){
         c = new Conexao("jdbc:postgresql://localhost:5432/tadsfit","postgres", "12345");
@@ -47,7 +47,7 @@ public class FilialDAO {
             instrucao.execute();
             c.desconectar();
         } catch (SQLException e) {
-            System.out.println("Erro na inclusão");
+            System.out.println(e);
         }
     }
     public ArrayList<Filial> emitirRelatorio(){
@@ -75,10 +75,11 @@ public class FilialDAO {
             instrucao.setString(2, filia.getEndereco());
             instrucao.setString(3, filia.getContato());
             instrucao.setString(4, filia.getHorario());
+            instrucao.setInt(5, filia.getIdf());
             instrucao.execute();
             c.desconectar();
         } catch (SQLException e) {
-            System.out.println("Erro na alteração");
+            System.out.println(e);
         }
     }
 }

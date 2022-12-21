@@ -54,12 +54,15 @@ public class FuncionariosVisao {
                     if (c==null){
                         c = new Funcionarios();
                         c.setMatricula(matriculaAux);
+                        sc.nextLine();
                         System.out.println("Digite a filial");
                         c.setId_filial(sc.nextInt());
+                        sc.nextLine();
                         System.out.println("Digite o nome: ");
                         c.setNome(sc.nextLine());
                         System.out.println("Digite a idade: ");
                         c.setIdade(sc.nextInt());
+                        sc.nextLine();
                         System.out.println("Digite o sexo: ");
                         c.setSexo(sc.nextLine());
                         System.out.println("Digite o contato: ");
@@ -83,12 +86,15 @@ public class FuncionariosVisao {
                     }else{
                         c = new Funcionarios();
                         c.setMatricula(matriculaAux);
+                        sc.nextLine();
                         System.out.println("Digite a filial");
                         c.setId_filial(sc.nextInt());
+                        sc.nextLine();
                         System.out.println("Digite o nome: ");
                         c.setNome(sc.nextLine());
                         System.out.println("Digite a idade: ");
                         c.setIdade(sc.nextInt());
+                        sc.nextLine();
                         System.out.println("Digite o sexo: ");
                         c.setSexo(sc.nextLine());
                         System.out.println("Digite o contato: ");

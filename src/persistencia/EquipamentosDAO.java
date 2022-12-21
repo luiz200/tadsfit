@@ -13,7 +13,7 @@ public class EquipamentosDAO {
     private String Relatorio = "select * from equipamentos";
     private String Buscar = "select * from equipamentos where patrimonio = ?";
     private String Inserir = "insert into equipamentos (patrimonio, id_filial, nome, status1) values(?, ?, ?, ?)";
-    private String Alterar = "update equipamentos set patrimonio=?, id_filial=?, nome=?, status1=?";
+    private String Alterar = "update equipamentos set patrimonio=?, id_filial=?, nome=?, status1=? where patrimonio=?";
 
     public EquipamentosDAO(){
         c = new Conexao("jdbc:postgresql://localhost:5432/tadsfit","postgres", "12345");
@@ -76,6 +76,7 @@ public class EquipamentosDAO {
             instrucao.setInt(2, equipamento.getId_filial());
             instrucao.setString(3, equipamento.getNome());
             instrucao.setString(4, equipamento.getStatus1());
+            instrucao.setInt(5, equipamento.getPatrimonio());
             instrucao.execute();
             c.desconectar();
         } catch (SQLException e) {

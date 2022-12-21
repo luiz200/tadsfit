@@ -49,6 +49,7 @@ public class FilialVisao {
                     if (c == null){
                         c = new Filial();
                         c.setIdf(idAux);
+                        sc.nextLine();
                         System.out.println("Endereço da filial: ");
                         c.setEndereco(sc.nextLine());
                         System.out.println("Contato da filial: ");
@@ -71,6 +72,7 @@ public class FilialVisao {
                     }else{
                         c = new Filial();
                         c.setIdf(idAux);
+                        sc.nextLine();
                         System.out.println("Endereço da filial: ");
                         c.setEndereco(sc.nextLine());
                         System.out.println("Contato da filial: ");

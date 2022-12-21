@@ -12,8 +12,8 @@ public class FuncionariosDAO {
     private Conexao c;
     private String Relatorio = "select * from funcionarios";
     private String Buscar = "select * from funcionarios where matricula = ?";
-    private String Inserir = "insert into funcionarios(matricula, id_filial, nome, idade, sexo, contato, endereco, horario) valeus(?, ?, ?, ?, ?, ?, ?, ?)";
-    private String Alterar = "update funcionarios set matricula=?, id_filial=?, nome=?, idade=?, sexo=?, contato=?, endereco=?, horario=?";
+    private String Inserir = "insert into funcionarios(matricula, id_filial, nome, idade, sexo, contato, endereco, horario) values(?, ?, ?, ?, ?, ?, ?, ?)";
+    private String Alterar = "update funcionarios set matricula=?, id_filial=?, nome=?, idade=?, sexo=?, contato=?, endereco=?, horario=? where matricula=?";
     private String Deletar = "delete from funcionarios where matricula=?";
 
     public FuncionariosDAO(){
@@ -33,7 +33,7 @@ public class FuncionariosDAO {
             c.desconectar();
 
         }catch (SQLException e){
-            System.out.println("Erro na busca");
+            System.out.println(e);
         }
         return funcionario;
     }
@@ -51,17 +51,11 @@ public class FuncionariosDAO {
             instrucao.setString(7, funcionario.getEndereco());
             instrucao.setString(8, funcionario.getHorario());
             instrucao.execute();
+            System.out.println("Cadastrado com sucesso!");
             c.desconectar();
         } catch (SQLException e) {
+            System.out.println(e);
             System.out.println("Erro na inclusão");
-        }
-    }
-
-    public void relatorio(Funcionarios funcionario){
-        try{
-
-        }catch (Exception e){
-
         }
     }
 
@@ -76,8 +70,8 @@ public class FuncionariosDAO {
                 funcionario = new Funcionarios(rs.getInt("matricula"), rs.getInt("id_filial"), rs.getString("nome"), rs.getInt("idade"), rs.getString("sexo"), rs.getString("contato"), rs.getString("endereco"), rs.getString("horario"));
                 lista.add(funcionario);
             }
-        }catch (Exception e){
-            System.out.println("Erro");
+        }catch (SQLException e){
+            System.out.println(e);
         }
         return lista;
     }
@@ -94,10 +88,11 @@ public class FuncionariosDAO {
             instrucao.setString(6, funcionario.getContato());
             instrucao.setString(7, funcionario.getEndereco());
             instrucao.setString(8, funcionario.getHorario());
+            instrucao.setInt(9, funcionario.getMatricula());
             instrucao.execute();
             c.desconectar();
         } catch (SQLException e) {
-            System.out.println("Erro na alteração");
+            System.out.println(e);
         }
     }
 
@@ -109,7 +104,7 @@ public class FuncionariosDAO {
             instrucao.execute();
             c.desconectar();
         } catch (SQLException e) {
-            System.out.println("erro");
+            System.out.println(e);
         }
     }
 }
