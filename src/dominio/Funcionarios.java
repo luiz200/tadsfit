@@ -1,5 +1,7 @@
 package dominio;
 
+import java.util.ArrayList;
+
 public class Funcionarios {
 
     private int matricula;
@@ -11,7 +13,11 @@ public class Funcionarios {
     private String endereco;
     private String horario;
 
+    private ArrayList<Aluno> listaAlunos;
+
     public Funcionarios(){
+
+        listaAlunos = new ArrayList<>();
 
     }
 
@@ -25,6 +31,7 @@ public class Funcionarios {
         this.contato = contato;
         this.endereco = endereco;
         this.horario = horario;
+        listaAlunos = new ArrayList<>();
 
     }
 
@@ -89,5 +96,25 @@ public class Funcionarios {
 
     public void setHorario(String horario) {
         this.horario = horario;
+    }
+
+    public Aluno consultaAluno(int id_al){
+        int i;
+        for (i=0; i<listaAlunos.size(); i++){
+            if(listaAlunos.get(i).getMatricula()==id_al){
+                return listaAlunos.get(i);
+            }
+        }
+        return null;
+    }
+    public int getTamanhoLista(){ return listaAlunos.size(); }
+    public Aluno getAlunos(int i){
+        return listaAlunos.get(i);
+    }
+    public ArrayList<Aluno> getListaAlunos() {
+        return listaAlunos;
+    }
+    public void setListaAlunos(ArrayList<Aluno> listaAlunos) {
+        this.listaAlunos = listaAlunos;
     }
 }

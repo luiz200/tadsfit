@@ -1,7 +1,9 @@
 package visao;
 
+import dominio.Aluno;
 import dominio.Filial;
 import dominio.Funcionarios;
+import persistencia.AlunoDAO;
 import persistencia.FilialDAO;
 import persistencia.FuncionariosDAO;
 
@@ -13,10 +15,13 @@ public class FuncionariosVisao {
         Scanner sc = new Scanner(System.in);
         FuncionariosDAO fun = new FuncionariosDAO();
         FilialDAO fi = new FilialDAO();
-        int op3 = 0, matriculaAux, idAux;
+        AlunoDAO al = new AlunoDAO();
+        int op3 = 0, op = 0, matriculaAux, idAux, matricula;
         ArrayList<Funcionarios> lista;
+        ArrayList<Aluno> lista2;
         Funcionarios c;
         Filial f;
+        Aluno a;
         do {
             System.out.println("---------------------------------------------------------------------------");
             System.out.println("1 - Ficha do funcionário");
@@ -48,6 +53,25 @@ public class FuncionariosVisao {
                         System.out.println("Contato: "+c.getContato());
                         System.out.println("Endereço: "+c.getEndereco());
                         System.out.println("Horário: "+c.getHorario());
+                        System.out.println("Gostaria de ver os alunos desse professor?(1-sim ou 0-não)");
+                        op = sc.nextInt();
+                        if (op==0){
+                            break;
+                        }else if(op==1){
+                            lista2 = al.emitirRelatorio();
+                            System.out.println("Relação de alunos desse profissional");
+                            for (int g=0; g< lista2.size(); g++){
+                                if(lista2.get(g).getId_fun()==matriculaAux){
+                                    System.out.println("\t"+lista2.get(g).getMatricula()+"\t"+lista2.get(g).getId_filial()+"\t"+lista2.get(g).getNome()+
+                                            lista2.get(g).getSexo()+"\t"+lista2.get(g).getContato()+"\t"+lista2.get(g).getEndereco());
+                                }else{
+                                    System.out.println("Ainda não existe alunos para esse profissional.");
+                                }
+                            }
+                        }else{
+                            System.out.println("Opção inválida.");
+                        }
+
                     }
                     break;
                 case 2:

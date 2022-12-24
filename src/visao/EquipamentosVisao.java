@@ -64,7 +64,7 @@ public class EquipamentosVisao {
                             sc.nextLine();
                             System.out.println("Nome do equipamento: ");
                             c.setNome(sc.nextLine());
-                            c.setStatus1("Status do equipamento: ");
+                            System.out.println("Status do equipamento: ");
                             c.setStatus1(sc.nextLine());
                             eqDao.inserir(c);
                             System.out.println("Equipamento incluído com sucesso!");
@@ -94,7 +94,7 @@ public class EquipamentosVisao {
                             sc.nextLine();
                             System.out.println("Nome do equipamento: ");
                             c.setNome(sc.nextLine());
-                            c.setStatus1("Status do equipamento: ");
+                            System.out.println("Status do equipamento: ");
                             c.setStatus1(sc.nextLine());
                             eqDao.alterar(c);
                             System.out.println("Equipamento atualizado com sucesso!");

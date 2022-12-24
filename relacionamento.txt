@@ -1,0 +1,13 @@
+Explicação do Relacionamento
+
+1 filial pode ter vários profissionais, mas 1 profissional só pode ter 1 filial;
+
+1 filial pode ter vários equipamentos, mas o equipamento pertence apenas a 1 filal;
+
+1 filial pode ter vários alunos, mas 1 aluno só pode frequêntar 1 filial;
+
+1 profissional pode ter vários alunos, mas 1 aluno só pode ter apenas 1 profissional;
+
+---------------------------------------------------------------------------------------
+
+Dupla: Luiz Felipe Henrique de Souza e Ramonie Martins de Lima

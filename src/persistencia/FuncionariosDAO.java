@@ -12,6 +12,7 @@ public class FuncionariosDAO {
     private Conexao c;
     private String Relatorio = "select * from funcionarios";
     private String Buscar = "select * from funcionarios where matricula = ?";
+    private String Buscar2 = "select * from funcionarios where id_filial = ?";
     private String Inserir = "insert into funcionarios(matricula, id_filial, nome, idade, sexo, contato, endereco, horario) values(?, ?, ?, ?, ?, ?, ?, ?)";
     private String Alterar = "update funcionarios set matricula=?, id_filial=?, nome=?, idade=?, sexo=?, contato=?, endereco=?, horario=? where matricula=?";
     private String Deletar = "delete from funcionarios where matricula=?";
@@ -29,6 +30,26 @@ public class FuncionariosDAO {
             ResultSet rs = instrucao.executeQuery();
             if (rs.next()){//andando no resultset
                 funcionario = new Funcionarios(rs.getInt("matricula"), rs.getInt("id_filial"), rs.getString("nome"), rs.getInt("idade"), rs.getString("sexo"), rs.getString("contato"), rs.getString("endereco"), rs.getString("horario"));
+            }
+            c.desconectar();
+
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+        return funcionario;
+    }
+
+    public Funcionarios buscar2(int matriculaAux){
+        Funcionarios funcionario = null;
+        ArrayList<Funcionarios> lista = new ArrayList<>();
+        try {
+            c.conectar();
+            PreparedStatement instrucao = c.getConexao().prepareStatement(Buscar2);
+            instrucao.setInt(1, matriculaAux);
+            ResultSet rs = instrucao.executeQuery();
+            while (rs.next()){//andando no resultset
+                funcionario = new Funcionarios(rs.getInt("matricula"), rs.getInt("id_filial"), rs.getString("nome"), rs.getInt("idade"), rs.getString("sexo"), rs.getString("contato"), rs.getString("endereco"), rs.getString("horario"));
+                lista.add(funcionario);
             }
             c.desconectar();
 
@@ -75,7 +96,22 @@ public class FuncionariosDAO {
         }
         return lista;
     }
-
+    public ArrayList<Funcionarios> emitirRelatorio2(){
+        Funcionarios funcionario;
+        ArrayList<Funcionarios> lista2 = new ArrayList<Funcionarios>();
+        try {
+            c.conectar();
+            Statement instrucao = c.getConexao().createStatement();
+            ResultSet rs = instrucao.executeQuery(Relatorio);
+            while (rs.next()){
+                funcionario = new Funcionarios(rs.getInt("matricula"), rs.getInt("id_filial"), rs.getString("nome"), rs.getInt("idade"), rs.getString("sexo"), rs.getString("contato"), rs.getString("endereco"), rs.getString("horario"));
+                lista2.add(funcionario);
+            }
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+        return lista2;
+    }
     public void alterar(Funcionarios funcionario){
         try {
             c.conectar();
